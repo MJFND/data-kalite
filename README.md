@@ -106,7 +106,7 @@ Using `makefile` to keep things simple.
 
 * To learn more about `pre-commit` tools check the `.pre-commit-config.yaml` in root.
 
-###Metrics
+### Metrics
 How to add new metrics:
 - All metrics must start with `get_`
 - All metrics must be wrapped in a `@Metrics.standardize` function.
@@ -115,7 +115,7 @@ How to add new metrics:
 
 Refer to existing function in `metrics.py`
 
-###Validations
+### Validations
 How to add new validations:
 - All expectations must start with `expect_`
 - All expectations must be wrapped in a `@Validations.standardize` function.
