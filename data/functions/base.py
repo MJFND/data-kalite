@@ -101,7 +101,14 @@ class Base(ABC):
                 .withColumn(MetaData.created_at, lit(current_timestamp()))
                 .withColumn(
                     MetaData.pipeline_args,
-                    create_map(*[lit(x) for x in chain(*self.metadata.get('pipeline_args', {}).items())]),
+                    create_map(
+                        *[
+                            lit(x)
+                            for x in chain(
+                                *self.metadata.get("pipeline_args", {}).items()
+                            )
+                        ]
+                    ),
                 )
             )
 

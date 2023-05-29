@@ -17,10 +17,7 @@ from data.utilities.logger import logger
 
 class Validations(Base):
     def __init__(
-        self,
-        source_data: DataFrame,
-        config: Any = None,
-        metadata: Dict = None
+        self, source_data: DataFrame, config: Any = None, metadata: Dict = None
     ):
         """
         Initialize
@@ -32,7 +29,7 @@ class Validations(Base):
             source_data=source_data,
             config=config,
             metadata=metadata,
-            )
+        )
 
     @staticmethod
     def standardize(func: Any):

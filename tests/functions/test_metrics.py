@@ -40,7 +40,12 @@ class TestMetrics:
         )
         source_data = df_reader.load(data_path)
         # pipeline args is not used in assertions
-        metadata = {"dag_id": "mydag", "dag_task_id": "mytask", "dag_run_id": "123456", "pipeline_args": {"id": "123", "flag": "True"}}
+        metadata = {
+            "dag_id": "mydag",
+            "dag_task_id": "mytask",
+            "dag_run_id": "123456",
+            "pipeline_args": {"id": "123", "flag": "True"},
+        }
         return source_data, metadata
 
     def test_get_row_count(self, setup: Tuple[DataFrame, Dict]):
