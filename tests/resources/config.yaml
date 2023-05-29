@@ -1,0 +1,10 @@
+validations:
+  decision:
+    - expect_column_to_exist
+    - expect_column_values_to_be_of_type: "StringType"
+    - expect_column_values_to_be_in_set: ["yes", "no"]
+    - expect_column_value_to_exist: ["random"]
+  id:
+    - expect_column_values_to_not_be_null
+  random_column:
+    - expect_column_to_exist

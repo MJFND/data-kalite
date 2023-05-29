@@ -1,0 +1,4 @@
+dataclasses==0.6
+great_expectations==0.14.12
+inflection==0.5.1
+pyspark==3.2.0

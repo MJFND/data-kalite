@@ -1,0 +1,12 @@
+id,decision,type,id_length,event_date,source,ip,device_id,device_model,device_manufacturer,device_os_name,device_os_version,result
+ccccccccccc0,yes,,1,,unknown,1.252.2.145,e23fgokfgh,XT2093DL,Motorola,Android,10,0
+ccccccccccc1,no,,1,,unknown,1.58.3.213,234rklsfdgsl,CP3320AS2,Yulong,Android,9,0
+ccccccccccc2,yes,,1,,unknown,1.58.3.214,nhgj3534,CP3320AS3,Google,Android,10,0
+ccccccccccc3,yes,,1,,unknown,1.58.3.215,asdjn2l34,CP3320AS5,Google,Android,10,0
+ccccccccccc4,no,,1,,unknown,1.58.3.216,asdasd23kj4,CP3320AS6,Samsung,Android,9,0
+ccccccccccc5,yes,,1,,unknown,1.58.3.217,jnegd81234,CP3320AF2,Samsung,Android,10,0
+ccccccccccc6,no,,1,,unknown,1.58.3.218,hg4h43r2,CP3320AQ2,Samsung,Android,10,0
+ccccccccccc7,yes,,1,,unknown,1.58.3.219,sadjaf234asd,CP3320AE1,Yulong,Android,10,0
+ccccccccccc8,no,,1,,unknown,1.58.3.210,asd3tger3,CP3320AR7,Samsung,Android,10,0
+ccccccccccc9,yes,,1,,unknown,1.58.3.211,23t54j6h4fsd,CP3320AW5,Apple,IOS,14,0
+

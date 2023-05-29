@@ -1,0 +1,27 @@
+repos:
+-   repo: https://github.com/pycqa/autoflake
+    rev: v1.4
+    hooks:
+    - id: autoflake
+      args: [ "--in-place", "--remove-all-unused-imports", "--remove-unused-variables", "--expand-star-imports" ]
+-   repo: https://github.com/psf/black
+    rev: 22.3.0
+    hooks:
+    - id: black
+-   repo: https://github.com/pycqa/isort
+    rev: 5.12.0
+    hooks:
+    - id: isort
+      args: ["--profile", "black"]
+-   repo: local
+    hooks:
+      - id: pytest
+        name: pytest
+        entry: pytest
+        language: system
+        pass_filenames: false
+        args: [ "--disable-warnings" ]
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v2.3.0
+    hooks:
+    - id: check-yaml
