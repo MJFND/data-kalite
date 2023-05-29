@@ -17,7 +17,7 @@ On Top of GE:
 - Easy to run default metrics with option to overwrite
 
 ## Usage
-For now pulling it locally and using as is or building it as a package would work, I may push this to PyPi later.
+For now pulling it locally and using as is or building it as a package `pip install .` would work, I may push this to PyPi later.
 
 ### Metrics
 How to run metrics: </br>
