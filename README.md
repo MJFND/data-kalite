@@ -76,7 +76,7 @@ validations:
         .
         - validation_n
 ```
-Refer to unit test resource for full example: Link.
+Refer to unit test resource for full example: [link](https://github.com/MJFND/Data-Kalite/blob/main/tests/resources/config.yaml)
 
 Function require config to be dictionary, it can be sourced from YAML or JSON as long as structure is followed.
 ```
