@@ -49,10 +49,10 @@ To run validations, `validations` function must be implemented.
 class TempV(Validations):
     def validations(self) -> List[ValidationsData]:
         return GeValidations(self.source_data).\
-            expect_column_to_exist("FINALDECISION").\
+            expect_column_to_exist("decision").\
             expect_column_values_to_be_of_type(column, "StringType").\
-            expect_column_value_to_exist("FINALDECISION", "XYZ").\
-            expect_column_values_to_not_have_one_unique_count("FINALDECISION").\
+            expect_column_value_to_exist("decision", "XYZ").\
+            expect_column_values_to_not_have_one_unique_count("decision").\
             result()
 
 # run function returns a dataframe
