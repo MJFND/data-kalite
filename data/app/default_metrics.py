@@ -17,8 +17,6 @@ class DefaultMetrics(Metrics):
         Default Metrics generator that takes in a DataFrame and
         produces metrics against all columns
 
-        ** append & extend to handle {} or [{}]
-
         :return: List of Metrics Object
         """
         ge_metrics = GeMetrics(self.source_data)
