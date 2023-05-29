@@ -99,7 +99,6 @@ After generating the DataFrame of validations, `ValidationsFailureException` can
 #### Setup Local Environment
 Using `makefile` to keep things simple.
 
-- `brew install pre-commit`
 - `make install`
     - test via:
         - `make pre-commit`
