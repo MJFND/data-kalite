@@ -16,7 +16,6 @@ class Metrics(Base):
         source_data: DataFrame,
         config: Any = None,
         metadata: Dict = None,
-        generate_metadata: bool = True,
         # TODO needs to find a better way to automatically calculate threshold
         unique_count_threshold: int = 25,
     ):
@@ -25,8 +24,6 @@ class Metrics(Base):
         :param source_data: A Dataframe holding the actual source data
         :param config: Any dict config to derive metrics
         :param metadata: Pipeline metadata parameters, e.g. run id extra args etc.
-        :param generate_metadata: Bool to find if metadata is needed or not
-                                  (contains: id, created_at, dag_task_id, pipeline_args)
         :param unique_count_threshold: Threshold used to calculate default metrics.
                              Defaults to 25, columns that have unique_count less than or equal to 25 will
                              calculate value level metrics like get_rate
@@ -35,7 +32,6 @@ class Metrics(Base):
             source_data=source_data,
             config=config,
             metadata=metadata,
-            generate_metadata=generate_metadata,
             unique_count_threshold=unique_count_threshold,
         )
 

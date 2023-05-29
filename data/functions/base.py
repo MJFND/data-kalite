@@ -26,7 +26,6 @@ class Base(ABC):
         source_data: DataFrame,
         config,
         metadata: Dict,
-        generate_metadata,
         unique_count_threshold: int = 25,
     ):
         """
@@ -34,7 +33,6 @@ class Base(ABC):
         :param source_data: A Dataframe holding the actual source data
         :param config: Any dict config to derive metrics
         :param metadata: Pipeline metadata parameters, e.g. run id extra args etc.
-        :param generate_metadata: Bool to find if metadata is needed or not (contains: id, created_at, pipeline_args)
         :param unique_count_threshold: Threshold used to calculate default metrics.
                              Defaults to 25, columns that have unique_count less than or equal to 25 will
                              calculate value level metrics like get_rate
@@ -43,7 +41,6 @@ class Base(ABC):
         self.metadata = metadata
         self.source_data = source_data
         self.config = config
-        self.generate_metadata = generate_metadata
         self.unique_count_threshold = unique_count_threshold
 
     def metrics(self) -> List[MetricsData]:
@@ -91,7 +88,7 @@ class Base(ABC):
         optional_cols = []
         required_cols = [MetaData.dag_id, MetaData.dag_run_id, MetaData.dag_task_id]
         base_cols = data.columns
-        if self.generate_metadata:
+        if self.metadata:
             optional_cols = [
                 MetaData.id,
                 MetaData.created_at,

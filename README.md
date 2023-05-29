@@ -26,7 +26,8 @@ To run default metrics;
 from data.app.default_metrics import DefaultMetrics
 
 # run function returns a dataframe
-# data is dataframe, metadata is a dict of metadata columns   
+# data is dataframe, metadata is a dict of metadata columns
+# metadata columns are optional  
 DefaultMetrics(source_data=source_data, metadata=metadata).run()
 ```
 
@@ -44,6 +45,7 @@ class TempM(Metrics):
 
 # run function returns a dataframe    
 # data is dataframe, metadata is a dict of metadata columns
+# metadata columns are optional
 metrics = TempM(source_data=data, metadata=metadata).run()
 ```
 Refer to unit test cases on usage.
@@ -77,6 +79,7 @@ class TempV(Validations):
 
 # run function returns a dataframe
 # data is dataframe, metadata is a dict of metadata columns
+# metadata columns are optional
 validations = TempV(source_data=data, metadata=metadata).run()
 ```
 Refer to unit test cases on usage.
@@ -103,6 +106,7 @@ Function require config to be dictionary, it can be sourced from YAML or JSON as
 from data.app.config_driven_validations import ConfigDrivenValidations
 
 # data is dataframe, metadata is a dict of metadata columns, config is validations
+# metadata columns are optional
 ConfigDrivenValidations(source_data=data, metadata=metadata, config=config).run()
 ```
 Refer to unit test cases on usage.
