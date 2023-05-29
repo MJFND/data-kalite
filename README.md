@@ -20,7 +20,7 @@ On Top of GE:
 ### Metrics
 How to run metrics: </br>
 To run default metrics;
-```
+```python
 class TempM(Metrics):
     # overwrite metrics function
     pass
@@ -45,7 +45,7 @@ Metrics sample result:
 ### Validations
 How to run validations: </br>
 To run validations, `validations` function must be implemented.
-```
+```python
 class TempV(Validations):
     def validations(self) -> List[ValidationsData]:
         return GeValidations(self.source_data).\
@@ -67,7 +67,7 @@ A config should be in a standard `Dict` format as shown under`config_driven_vali
 
 Calling the function is easy, just pass optional config param.
 YAML Config:
-```
+```yaml
 validations:
     <column_name>:
         - validation_1
@@ -79,7 +79,7 @@ validations:
 Refer to unit test resource for full example: [link](https://github.com/MJFND/Data-Kalite/blob/main/tests/resources/config.yaml)
 
 Function require config to be dictionary, it can be sourced from YAML or JSON as long as structure is followed.
-```
+```python
 # data is dataframe, metadata is a dict of metadata columns, config is validations
 ConfigDrivenValidations(source_data=data, metadata=metadata, config=config).run()
 ```
@@ -106,7 +106,7 @@ Using `makefile` to keep things simple.
 
 * To learn more about `pre-commit` tools check the `.pre-commit-config.yaml` in root.
 
-###Metrics
+### Metrics
 How to add new metrics:
 - All metrics must start with `get_`
 - All metrics must be wrapped in a `@Metrics.standardize` function.
@@ -115,7 +115,7 @@ How to add new metrics:
 
 Refer to existing function in `metrics.py`
 
-###Validations
+### Validations
 How to add new validations:
 - All expectations must start with `expect_`
 - All expectations must be wrapped in a `@Validations.standardize` function.
