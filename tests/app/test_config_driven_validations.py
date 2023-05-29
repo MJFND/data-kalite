@@ -38,7 +38,8 @@ class TestConfigDrivenValidations:
             **{"header": "true", "inferSchema": "true"}
         )
         source_data = df_reader.load(data_path)
-        metadata = {"dag_id": "mydag", "dag_task_id": "mytask", "dag_run_id": "123456"}
+        # pipeline args is not used in assertions
+        metadata = {"dag_id": "mydag", "dag_task_id": "mytask", "dag_run_id": "123456", "pipeline_args": {"id": "123", "flag": "True"}}
 
         with open(
             os.path.dirname(os.path.realpath(__file__)) + "/../resources/config.yaml",
