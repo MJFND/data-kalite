@@ -4,8 +4,8 @@ from typing import Dict, List, Tuple
 import pytest
 from pyspark.sql import DataFrame, Row, SparkSession
 
-from data.data_classes.metrics_data import MetricsData
-from data.functions.metrics import GeMetrics, Metrics
+from kalite.data_classes.metrics_data import MetricsData
+from kalite.functions.metrics import GeMetrics, Metrics
 
 
 class TestMetrics:

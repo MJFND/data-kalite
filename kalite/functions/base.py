@@ -14,10 +14,10 @@ from pyspark.sql.functions import (
 )
 from pyspark.sql.types import StringType, StructField, StructType
 
-from data.data_classes.meta_data import MetaData
-from data.data_classes.metrics_data import MetricsData
-from data.data_classes.validations_data import ValidationsData
-from data.utilities.logger import logger
+from kalite.data_classes.meta_data import MetaData
+from kalite.data_classes.metrics_data import MetricsData
+from kalite.data_classes.validations_data import ValidationsData
+from kalite.utilities.logger import logger
 
 
 class Base(ABC):

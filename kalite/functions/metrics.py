@@ -5,9 +5,9 @@ from typing import Any, Dict, List, Union
 from great_expectations.dataset import SparkDFDataset
 from pyspark.sql import DataFrame
 
-from data.data_classes.metrics_data import MetricsData
-from data.functions.base import Base
-from data.utilities.logger import logger
+from kalite.data_classes.metrics_data import MetricsData
+from kalite.functions.base import Base
+from kalite.utilities.logger import logger
 
 
 class Metrics(Base):

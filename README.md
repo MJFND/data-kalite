@@ -1,5 +1,5 @@
-## Data Kalite
-Kalite means Quality in Turkish.
+## Kalite
+Kalite means Quality in Turkish. </br>
 This is a framework on top of open source Great Expectations PySpark Suite with additional features.
 
 About Great Expectations:
@@ -23,7 +23,7 @@ For now pulling it locally and using as is or building it as a package `pip inst
 How to run metrics: </br>
 To run default metrics;
 ```python
-from data.app.default_metrics import DefaultMetrics
+from kalite.application.default_metrics import DefaultMetrics
 
 # run function returns a dataframe
 # data is dataframe, metadata is a dict of metadata columns
@@ -33,8 +33,8 @@ DefaultMetrics(source_data=source_data, metadata=metadata).run()
 
 To overwrite metrics:
 ```python
-from data.data_classes.metrics_data import MetricsData
-from data.functions.metrics import GeMetrics, Metrics
+from kalite.data_classes.metrics_data import MetricsData
+from kalite.functions.metrics import GeMetrics, Metrics
 
 class TempM(Metrics):
     def metrics(self) -> List[MetricsData]:
@@ -65,8 +65,8 @@ Metrics sample result:
 How to run validations: </br>
 To run validations, `validations` function must be implemented.
 ```python
-from data.data_classes.validations_data import ValidationsData
-from data.functions.validations import GeValidations, Validations
+from kalite.data_classes.validations_data import ValidationsData
+from kalite.functions.validations import GeValidations, Validations
 
 class TempV(Validations):
     def validations(self) -> List[ValidationsData]:
@@ -104,7 +104,7 @@ Refer to unit test resource for full example: [link](https://github.com/MJFND/Da
 
 Function require config to be dictionary, it can be sourced from YAML or JSON as long as structure is followed.
 ```python
-from data.app.config_driven_validations import ConfigDrivenValidations
+from kalite.application.config_driven_validations import ConfigDrivenValidations
 
 # data is dataframe, metadata is a dict of metadata columns, config is validations
 # metadata columns are optional

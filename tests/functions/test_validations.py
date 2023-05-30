@@ -4,8 +4,8 @@ from typing import Dict, List, Tuple
 import pytest
 from pyspark.sql import DataFrame, Row, SparkSession
 
-from data.data_classes.validations_data import ValidationsData
-from data.functions.validations import GeValidations, Validations
+from kalite.data_classes.validations_data import ValidationsData
+from kalite.functions.validations import GeValidations, Validations
 
 
 class TestValidations:
