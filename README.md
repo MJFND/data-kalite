@@ -38,7 +38,7 @@ from data.functions.metrics import GeMetrics, Metrics
 
 class TempM(Metrics):
     def metrics(self) -> List[MetricsData]:
-        return GeValidations(self.source_data).\
+        return GeMetrics(self.source_data).\
             get_column_unique_count("decision").\
             get_column_max("device_os_version").\
             result()
@@ -52,13 +52,13 @@ Refer to unit test cases on usage.
 
 Metrics sample result: 
 
-|metrics                |results|column_name      |column_value|dag_id|dag_run_id|dag_task_id|
-|-----------------------|-------|-----------------|------------|------|----------|-----------|
-|get_column_unique_count|0.0    |event_date       |null        |mydag |123456    |mytask     |
-|get_column_value_count |10.0   |source           |unknown     |mydag |123456    |mytask     |
-|get_column_median      |10.0   |device_os_version|null        |mydag |123456    |mytask     |
-|get_rate               |0.9    |device_os_name   |Android     |mydag |123456    |mytask     |
-|get_column_unique_count|0.0    |type             |null        |mydag |123456    |mytask     |
+|id                              |created_at             |pipeline_args            |dag_id|dag_run_id|dag_task_id|metrics                |results|column_name      |column_value|
+|--------------------------------|-----------------------|-------------------------|------|----------|-----------|-----------------------|-------|-----------------|------------|
+|53d924311faca5490a94d6f2d51ae7d6|2023-05-29 23:12:35.351|{id -> 123, flag -> True}|mydag |123456    |mytask     |get_column_unique_count|0.0    |event_date       |null        |
+|9c209f282a8a91f4a2c07b59406e68cf|2023-05-29 23:12:35.351|{id -> 123, flag -> True}|mydag |123456    |mytask     |get_column_value_count |10.0   |source           |unknown     |
+|5f57c0104e1fab302b134bac84b7c2d2|2023-05-29 23:12:35.351|{id -> 123, flag -> True}|mydag |123456    |mytask     |get_column_median      |10.0   |device_os_version|null        |
+|afc8be1f1a2fc296f2133ebc1cca45f7|2023-05-29 23:12:35.351|{id -> 123, flag -> True}|mydag |123456    |mytask     |get_rate               |0.9    |device_os_name   |Android     |
+|3d10cc1b98a617e54a8af6eed33677d4|2023-05-29 23:12:35.351|{id -> 123, flag -> True}|mydag |123456    |mytask     |get_column_unique_count|0.0    |type             |null        |
 
 
 ### Validations
@@ -88,7 +88,8 @@ Refer to unit test cases on usage.
 A simple validator service on top of validations that allows to perform validations via a config dynamically.
 A config should be in a standard `Dict` format as shown under`config_driven_validations.py`.
 
-Calling the function is easy, just pass optional config param.
+Calling the function is easy, just pass config param as Dict, could be derived from a YAML or JSON. Benefits of decoupling from code is you can keep these validations in a centralized Data Contract repository.
+
 YAML Config:
 ```yaml
 validations:
