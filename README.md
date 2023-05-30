@@ -8,13 +8,15 @@ About Great Expectations:
 - [Optional] Can be hooked up with the GE HTML static pages
 
 On Top of GE:
+- Ability to return a standardized DataFrame for both Metrics and Validations that can be pushed to DWH for historical analysis
 - Runs all validations first before failing the pipeline
-    - Returns a Validation generated standardized DataFrame that can be pushed to DWH for historical analysis
+    - Returns a Validation generated standardized DataFrame
     - Failing the pipeline when one of the validation has failed
     - Logs validation through logger
 - Support to add metadata column for tracking purposes (dag_id etc)
 - Deriving validations through configurations (YAML configs or Dict)
-- Easy to run default metrics with option to overwrite
+- Easy to run default metrics
+- Ability to use lower level api for metrics and validations
 
 ## Usage
 For now pulling it locally and using as is or building it as a package `pip install .` would work, I may push this to PyPi later.
@@ -31,7 +33,7 @@ metadata = "<set_optional_dict>"
 DefaultMetrics(source_data=source_data, metadata=metadata).run()
 ```
 
-To overwrite metrics:
+Implementing Metrics:
 ```python
 from kalite.data_classes.metrics_data import MetricsData
 from kalite.functions.metrics import GeMetrics, Metrics
@@ -123,6 +125,12 @@ Validation sample result:
 
 ### Failing the Task
 After generating the DataFrame of validations, `ValidationsFailureException` can be used to throw exception to fail pipeline.
+```python
+from kalite.exception.validations_failure_exception import ValidationsFailureException
+
+validation_data = "<set>" # dataframe that was generated through Validations
+ValidationsFailureException.validate(validation_data)
+```
 
 ## Contributing
 #### Setup Local Environment
