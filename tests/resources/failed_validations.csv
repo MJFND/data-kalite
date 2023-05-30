@@ -1,0 +1,3 @@
+id,created_at,dag_id,dag_run_id,dag_task_id,validations,results,column_name
+40a2037a2298c8a86aa9c5c92c3a9db9,2023-05-29 16:20:32.975,mydag,123456,mytask,expect_column_to_exist,FAIL,decision
+f5af2ed95a5ac827cf7d5020e44fee6e,2023-05-29 16:20:32.975,mydag,123456,mytask,expect_column_values_to_be_of_type,PASS,decision
