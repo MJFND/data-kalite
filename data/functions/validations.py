@@ -17,25 +17,18 @@ from data.utilities.logger import logger
 
 class Validations(Base):
     def __init__(
-        self,
-        source_data: DataFrame,
-        config: Any = None,
-        metadata: Dict = None,
-        generate_metadata: bool = True,
+        self, source_data: DataFrame, config: Any = None, metadata: Dict = None
     ):
         """
         Initialize
         :param source_data: A Dataframe holding the actual source data
         :param config: Any dict config to derive metrics
         :param metadata: Pipeline metadata parameters, e.g. run id extra args etc.
-        :param generate_metadata: Bool to find if metadata is needed or not
-                                  (contains: id, created_at, dag_task_id, pipeline_args)
         """
         super(Validations, self).__init__(
             source_data=source_data,
             config=config,
             metadata=metadata,
-            generate_metadata=generate_metadata,
         )
 
     @staticmethod

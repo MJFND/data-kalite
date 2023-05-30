@@ -26,7 +26,8 @@ To run default metrics;
 from data.app.default_metrics import DefaultMetrics
 
 # run function returns a dataframe
-# data is dataframe, metadata is a dict of metadata columns   
+# data is dataframe, metadata is a dict of metadata columns
+# metadata columns are optional  
 DefaultMetrics(source_data=source_data, metadata=metadata).run()
 ```
 
@@ -37,26 +38,27 @@ from data.functions.metrics import GeMetrics, Metrics
 
 class TempM(Metrics):
     def metrics(self) -> List[MetricsData]:
-        return GeValidations(self.source_data).\
+        return GeMetrics(self.source_data).\
             get_column_unique_count("decision").\
             get_column_max("device_os_version").\
             result()
 
 # run function returns a dataframe    
 # data is dataframe, metadata is a dict of metadata columns
+# metadata columns are optional
 metrics = TempM(source_data=data, metadata=metadata).run()
 ```
 Refer to unit test cases on usage.
 
 Metrics sample result: 
 
-|metrics                |results|column_name      |column_value|dag_id|dag_run_id|dag_task_id|
-|-----------------------|-------|-----------------|------------|------|----------|-----------|
-|get_column_unique_count|0.0    |event_date       |null        |mydag |123456    |mytask     |
-|get_column_value_count |10.0   |source           |unknown     |mydag |123456    |mytask     |
-|get_column_median      |10.0   |device_os_version|null        |mydag |123456    |mytask     |
-|get_rate               |0.9    |device_os_name   |Android     |mydag |123456    |mytask     |
-|get_column_unique_count|0.0    |type             |null        |mydag |123456    |mytask     |
+|id                              |created_at             |pipeline_args            |dag_id|dag_run_id|dag_task_id|metrics                |results|column_name      |column_value|
+|--------------------------------|-----------------------|-------------------------|------|----------|-----------|-----------------------|-------|-----------------|------------|
+|53d924311faca5490a94d6f2d51ae7d6|2023-05-29 23:12:35.351|{id -> 123, flag -> True}|mydag |123456    |mytask     |get_column_unique_count|0.0    |event_date       |null        |
+|9c209f282a8a91f4a2c07b59406e68cf|2023-05-29 23:12:35.351|{id -> 123, flag -> True}|mydag |123456    |mytask     |get_column_value_count |10.0   |source           |unknown     |
+|5f57c0104e1fab302b134bac84b7c2d2|2023-05-29 23:12:35.351|{id -> 123, flag -> True}|mydag |123456    |mytask     |get_column_median      |10.0   |device_os_version|null        |
+|afc8be1f1a2fc296f2133ebc1cca45f7|2023-05-29 23:12:35.351|{id -> 123, flag -> True}|mydag |123456    |mytask     |get_rate               |0.9    |device_os_name   |Android     |
+|3d10cc1b98a617e54a8af6eed33677d4|2023-05-29 23:12:35.351|{id -> 123, flag -> True}|mydag |123456    |mytask     |get_column_unique_count|0.0    |type             |null        |
 
 
 ### Validations
@@ -77,6 +79,7 @@ class TempV(Validations):
 
 # run function returns a dataframe
 # data is dataframe, metadata is a dict of metadata columns
+# metadata columns are optional
 validations = TempV(source_data=data, metadata=metadata).run()
 ```
 Refer to unit test cases on usage.
@@ -85,7 +88,8 @@ Refer to unit test cases on usage.
 A simple validator service on top of validations that allows to perform validations via a config dynamically.
 A config should be in a standard `Dict` format as shown under`config_driven_validations.py`.
 
-Calling the function is easy, just pass optional config param.
+Calling the function is easy, just pass config param as Dict, could be derived from a YAML or JSON. Benefits of decoupling from code is you can keep these validations in a centralized Data Contract repository.
+
 YAML Config:
 ```yaml
 validations:
@@ -103,6 +107,7 @@ Function require config to be dictionary, it can be sourced from YAML or JSON as
 from data.app.config_driven_validations import ConfigDrivenValidations
 
 # data is dataframe, metadata is a dict of metadata columns, config is validations
+# metadata columns are optional
 ConfigDrivenValidations(source_data=data, metadata=metadata, config=config).run()
 ```
 Refer to unit test cases on usage.
@@ -111,8 +116,8 @@ Validation sample result:
 
 |id                              |created_at             |pipeline_args                                                 |dag_id|dag_run_id|dag_task_id|validations                        |results|column_name  |ge_metadata                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 |--------------------------------|-----------------------|--------------------------------------------------------------|------|----------|-----------|-----------------------------------|-------|-------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|40a2037a2298c8a86aa9c5c92c3a9db9|2023-05-29 16:20:32.975|{dag_id -> mydag, dag_task_id -> mytask, dag_run_id -> 123456}|mydag |123456    |mytask     |expect_column_to_exist             |PASS   |decision     |{"meta": {}, "result": {}, "success": true, "expectation_config": {"meta": {}, "kwargs": {"column": "decision", "result_format": "BASIC"}, "expectation_type": "expect_column_to_exist"}, "exception_info": {"raised_exception": false, "exception_traceback": null, "exception_message": null}}                                                                                                                                                                                                                                                              |
-|f5af2ed95a5ac827cf7d5020e44fee6e|2023-05-29 16:20:32.975|{dag_id -> mydag, dag_task_id -> mytask, dag_run_id -> 123456}|mydag |123456    |mytask     |expect_column_values_to_be_of_type |PASS   |decision     |{"meta": {}, "result": {"observed_value": "StringType"}, "success": true, "expectation_config": {"meta": {}, "kwargs": {"column": "decision", "type_": "StringType", "result_format": "BASIC"}, "expectation_type": "expect_column_values_to_be_of_type"}, "exception_info": {"raised_exception": false, "exception_traceback": null, "exception_message": null}} 
+|40a2037a2298c8a86aa9c5c92c3a9db9|2023-05-29 16:20:32.975|{id -> 123, flag -> True}|mydag |123456    |mytask     |expect_column_to_exist             |PASS   |decision     |{"meta": {}, "result": {}, "success": true, "expectation_config": {"meta": {}, "kwargs": {"column": "decision", "result_format": "BASIC"}, "expectation_type": "expect_column_to_exist"}, "exception_info": {"raised_exception": false, "exception_traceback": null, "exception_message": null}}                                                                                                                                                                                                                                                              |
+|f5af2ed95a5ac827cf7d5020e44fee6e|2023-05-29 16:20:32.975|{id -> 123, flag -> True}|mydag |123456    |mytask     |expect_column_values_to_be_of_type |PASS   |decision     |{"meta": {}, "result": {"observed_value": "StringType"}, "success": true, "expectation_config": {"meta": {}, "kwargs": {"column": "decision", "type_": "StringType", "result_format": "BASIC"}, "expectation_type": "expect_column_values_to_be_of_type"}, "exception_info": {"raised_exception": false, "exception_traceback": null, "exception_message": null}} 
 
 ### Failing the Task
 After generating the DataFrame of validations, `ValidationsFailureException` can be used to throw exception to fail pipeline.

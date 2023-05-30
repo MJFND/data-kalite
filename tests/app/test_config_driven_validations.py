@@ -38,7 +38,13 @@ class TestConfigDrivenValidations:
             **{"header": "true", "inferSchema": "true"}
         )
         source_data = df_reader.load(data_path)
-        metadata = {"dag_id": "mydag", "dag_task_id": "mytask", "dag_run_id": "123456"}
+        # pipeline args is not used in assertions
+        metadata = {
+            "dag_id": "mydag",
+            "dag_task_id": "mytask",
+            "dag_run_id": "123456",
+            "pipeline_args": {"id": "123", "flag": "True"},
+        }
 
         with open(
             os.path.dirname(os.path.realpath(__file__)) + "/../resources/config.yaml",
@@ -49,7 +55,6 @@ class TestConfigDrivenValidations:
 
     def test_config_driven_validations(self, setup: Tuple[DataFrame, Dict, Dict]):
         source_data, metadata, config = setup
-        print(config)
         observed = (
             ConfigDrivenValidations(
                 source_data=source_data, metadata=metadata, config=config
