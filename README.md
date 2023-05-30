@@ -25,9 +25,9 @@ To run default metrics;
 ```python
 from kalite.application.default_metrics import DefaultMetrics
 
-# run function returns a dataframe
-# data is dataframe, metadata is a dict of metadata columns
-# metadata columns are optional  
+source_data = "<set_dataframe>"
+metadata = "<set_optional_dict>"
+# run() returns a DataFrame  
 DefaultMetrics(source_data=source_data, metadata=metadata).run()
 ```
 
@@ -42,10 +42,10 @@ class TempM(Metrics):
             get_column_unique_count("decision").\
             get_column_max("device_os_version").\
             result()
-
-# run function returns a dataframe    
-# data is dataframe, metadata is a dict of metadata columns
-# metadata columns are optional
+    
+source_data = "<set_dataframe>"
+metadata = "<set_optional_dict>"
+# run() returns a DataFrame
 metrics = TempM(source_data=data, metadata=metadata).run()
 ```
 Refer to unit test cases on usage.
@@ -77,9 +77,9 @@ class TempV(Validations):
             expect_column_values_to_not_have_one_unique_count("decision").\
             result()
 
-# run function returns a dataframe
-# data is dataframe, metadata is a dict of metadata columns
-# metadata columns are optional
+source_data = "<set_dataframe>"
+metadata = "<set_optional_dict>"
+# run() returns a DataFrame
 validations = TempV(source_data=data, metadata=metadata).run()
 ```
 Refer to unit test cases on usage.
@@ -106,8 +106,10 @@ Function require config to be dictionary, it can be sourced from YAML or JSON as
 ```python
 from kalite.application.config_driven_validations import ConfigDrivenValidations
 
-# data is dataframe, metadata is a dict of metadata columns, config is validations
-# metadata columns are optional
+source_data = "<set_dataframe>"
+metadata = "<set_optional_dict>"
+config = "<set_dict>"
+# run() returns a DataFrame
 ConfigDrivenValidations(source_data=data, metadata=metadata, config=config).run()
 ```
 Refer to unit test cases on usage.
