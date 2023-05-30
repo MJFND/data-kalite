@@ -3,7 +3,7 @@ from pyspark.sql.dataframe import DataFrame
 from kalite.data_classes.result_data import ResultData
 
 
-class ValidationsFailureException:
+class Validator:
     @staticmethod
     def validate(data: DataFrame):
         validated = data.where(data[ResultData.NAME] == ResultData.FAIL).cache()

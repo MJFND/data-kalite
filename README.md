@@ -124,12 +124,12 @@ Validation sample result:
 |f5af2ed95a5ac827cf7d5020e44fee6e|2023-05-29 16:20:32.975|{id -> 123, flag -> True}|mydag |123456    |mytask     |expect_column_values_to_be_of_type |PASS   |decision     |{"meta": {}, "result": {"observed_value": "StringType"}, "success": true, "expectation_config": {"meta": {}, "kwargs": {"column": "decision", "type_": "StringType", "result_format": "BASIC"}, "expectation_type": "expect_column_values_to_be_of_type"}, "exception_info": {"raised_exception": false, "exception_traceback": null, "exception_message": null}} 
 
 ### Failing the Task
-After generating the DataFrame of validations, `ValidationsFailureException` can be used to throw exception to fail pipeline.
+After generating the DataFrame of validations, `Validator` can be used to throw exception to fail pipeline.
 ```python
-from kalite.exception.validations_failure_exception import ValidationsFailureException
+from kalite.functions.validator import Validator
 
 validation_data = "<set>" # dataframe that was generated through Validations
-ValidationsFailureException.validate(validation_data)
+Validator.validate(validation_data)
 ```
 
 ## Contributing
