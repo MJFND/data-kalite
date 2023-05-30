@@ -4,10 +4,10 @@ from typing import Tuple
 import pytest
 from pyspark.sql import DataFrame, SparkSession
 
-from kalite.exception.validations_failure_exception import ValidationsFailureException
+from kalite.functions.validator import Validator
 
 
-class TestValidationsFailureException:
+class TestValidator:
     """
     Test the exception
     """
@@ -21,7 +21,7 @@ class TestValidationsFailureException:
 
         spark = (
             SparkSession.builder.master("local[1]")
-            .appName("Test ValidationsFailureException")
+            .appName("Test Validator")
             .getOrCreate()
         )
         # Last step to stop spark before the session ends
@@ -45,7 +45,7 @@ class TestValidationsFailureException:
     def test_passed_validations(self, setup: Tuple[DataFrame, DataFrame]):
         passed_validations, _ = setup
         try:
-            ValidationsFailureException.validate(passed_validations)
+            Validator.validate(passed_validations)
         except Exception:
             assert False
         else:
@@ -54,7 +54,7 @@ class TestValidationsFailureException:
     def test_failed_validations(self, setup: Tuple[DataFrame, DataFrame]):
         _, failed_validations = setup
         try:
-            ValidationsFailureException.validate(failed_validations)
+            Validator.validate(failed_validations)
         except Exception:
             assert True
         else:
