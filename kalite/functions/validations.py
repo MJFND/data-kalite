@@ -8,11 +8,11 @@ from great_expectations.core.expectation_validation_result import (
 from great_expectations.dataset import SparkDFDataset
 from pyspark.sql import DataFrame
 
-from data.data_classes.result_data import ResultData
-from data.data_classes.validations_data import ValidationsData
-from data.functions.base import Base
-from data.functions.metrics import GeMetrics
-from data.utilities.logger import logger
+from kalite.data_classes.result_data import ResultData
+from kalite.data_classes.validations_data import ValidationsData
+from kalite.functions.base import Base
+from kalite.functions.metrics import GeMetrics
+from kalite.utilities.logger import logger
 
 
 class Validations(Base):

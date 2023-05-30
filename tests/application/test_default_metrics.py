@@ -4,7 +4,7 @@ from typing import Dict, Tuple
 import pytest
 from pyspark.sql import DataFrame, Row, SparkSession
 
-from data.app.default_metrics import DefaultMetrics
+from kalite.application.default_metrics import DefaultMetrics
 
 
 class TestDefaultMetrics:

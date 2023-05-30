@@ -8,7 +8,7 @@ from pyspark.sql.types import (
     NumericType,
 )
 
-from data.functions.metrics import GeMetrics, Metrics, MetricsData
+from kalite.functions.metrics import GeMetrics, Metrics, MetricsData
 
 
 class DefaultMetrics(Metrics):

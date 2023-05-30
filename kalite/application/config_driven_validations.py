@@ -1,7 +1,7 @@
 from typing import List
 
-from data.data_classes.validations_data import ValidationsData
-from data.functions.validations import GeValidations, Validations
+from kalite.data_classes.validations_data import ValidationsData
+from kalite.functions.validations import GeValidations, Validations
 
 
 class ConfigDrivenValidations(Validations):

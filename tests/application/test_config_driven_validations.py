@@ -5,7 +5,7 @@ import pytest
 import yaml
 from pyspark.sql import DataFrame, Row, SparkSession
 
-from data.app.config_driven_validations import ConfigDrivenValidations
+from kalite.application.config_driven_validations import ConfigDrivenValidations
 
 
 class TestConfigDrivenValidations:
