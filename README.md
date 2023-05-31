@@ -157,7 +157,6 @@ How to add new validations:
 - All expectations must start with `expect_`
 - All expectations must be wrapped in a `@Validations.standardize` function.
 - All expectations must return a `ExpectationSuiteValidationResult`
-
 - Most of the validations are abstraction on top of GE as mentioned [here](https://github.com/great-expectations/great_expectations/blob/develop/great_expectations/dataset/sparkdf_dataset.py#L844).
 
 Refer to existing function in `validations.py`
