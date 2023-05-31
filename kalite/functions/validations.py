@@ -203,7 +203,7 @@ class GeValidations:
         """
         Expect custom condition for running completely custom filters
         usage: expect_custom_condition_result_count_to_be_zero(
-            dataframe, col(fraudOutcome) == fraud and fraudType is null
+            dataframe, col(column_A) == XYZ and column_B is null
         )
 
         :param column: Column name used in the Left side of condition
