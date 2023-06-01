@@ -1,4 +1,4 @@
-name: Actions
+name: Test
 
 on:
   push:
@@ -15,5 +15,5 @@ jobs:
     - name: Install dependencies
       run: make install
 
-    - name: Run check
+    - name: Run Tests
       run: make pre-commit
