@@ -17,7 +17,7 @@ class ConfigDrivenValidations(Validations):
                                 {"<function_name>": str | List[str] }
                             ]
                         }
-              e.g: {"initial_decision":
+              e.g: {"my_column":
                        [        # No extra param
                             "expect_column_to_exist",
                                 # One extra param
