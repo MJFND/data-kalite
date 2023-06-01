@@ -19,7 +19,10 @@ On Top of GE:
 - Ability to use lower level api for metrics and validations
 
 ## Usage
-For now pulling it locally and using as is or building it as a package `pip install .` would work, I may push this to PyPi later.
+Few ways:
+- Download from Pypi
+- Clone and integrate in your codebase
+- Clone and build your python package `pip install .`
 
 ### Metrics
 How to run metrics: </br>
