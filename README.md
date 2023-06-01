@@ -20,9 +20,11 @@ On Top of GE:
 
 ## Usage
 Few ways:
-- Download from Pypi
+- Download from Pypi `pip install kalite`
 - Clone and integrate in your codebase
-- Clone and build your python package `pip install .`
+- Clone and build your python package:
+    - `pip install .` for `.egg`
+    - `python setup.py bdist_wheel`, for `whl`
 
 ### Metrics
 How to run metrics: </br>
