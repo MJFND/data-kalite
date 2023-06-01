@@ -1,4 +1,4 @@
-## Kalite
+## Data-Kalite
 Kalite means Quality in Turkish. </br>
 This is a framework on top of open source Great Expectations PySpark Suite with additional features.
 
@@ -20,9 +20,11 @@ On Top of GE:
 
 ## Usage
 Few ways:
-- Download from Pypi
+- Download from Pypi `pip install data-kalite`
 - Clone and integrate in your codebase
-- Clone and build your python package `pip install .`
+- Clone and build your python package:
+    - `pip install .` for `.egg`
+    - `python setup.py bdist_wheel`, for `whl`
 
 ### Metrics
 How to run metrics: </br>
