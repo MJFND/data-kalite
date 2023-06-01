@@ -9,7 +9,7 @@ with open("README.md", "r") as f:
     long_description = f.read()
 
 setup(
-    name="kalite",
+    name="data-kalite",
     version="0.0.1",
     packages=find_packages(),
     install_requires=install_requires,
