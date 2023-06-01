@@ -10,7 +10,7 @@ with open("README.md", "r") as f:
 
 setup(
     name="data-kalite",
-    version="0.0.1",
+    version="1.0.0",
     packages=find_packages(),
     install_requires=install_requires,
     python_requires=">=3.7.0",
