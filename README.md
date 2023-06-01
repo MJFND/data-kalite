@@ -128,7 +128,7 @@ After generating the DataFrame of validations, `Validator` can be used to throw 
 ```python
 from kalite.functions.validator import Validator
 
-validation_data = "<set>" # dataframe that was generated through Validations
+validation_data = "<dataset>" # dataframe that was generated through Validations
 Validator.validate(validation_data)
 ```
 

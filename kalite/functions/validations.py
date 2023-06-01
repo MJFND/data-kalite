@@ -162,8 +162,8 @@ class GeValidations:
     ):
         """
         Expect Column to not belong to the single category for the given column value(s)
-            E.g Every If every record in `initial_decision` should not be  `auto reject`
-            expect_column_values_to_not_belong_to_single_category('initial_decision', ['auto reject'])
+            E.g If every record in `<column_A>` should not be `<value>`
+            expect_column_values_to_not_belong_to_single_category('<column_A>', ['<value>'])
 
         :param column: Representing a column name on which we want to perform
         :param values: Expected value or values
