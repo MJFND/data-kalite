@@ -1,4 +1,6 @@
 ## Data-Kalite
+[![PyPI version](https://badge.fury.io/py/data-kalite.svg)](https://badge.fury.io/py/data-kalite)
+
 Kalite means Quality in Turkish. </br>
 This is a framework on top of open source Great Expectations PySpark Suite with additional features.
 
