@@ -58,8 +58,8 @@ from kalite.functions.metrics import GeMetrics, Metrics
 class TempM(Metrics):
     def metrics(self) -> List[MetricsData]:
         return GeMetrics(self.source_data).\
-            get_column_unique_count("decision").\
-            get_column_max("device_os_version").\
+            get_column_unique_count("column_A").\
+            get_column_max("column_B").\
             result()
     
 source_data = "<set_dataframe>"
@@ -99,10 +99,10 @@ from kalite.functions.validations import GeValidations, Validations
 class TempV(Validations):
     def validations(self) -> List[ValidationsData]:
         return GeValidations(self.source_data).\
-            expect_column_to_exist("a").\
-            expect_column_values_to_be_of_type("a", "StringType").\
-            expect_column_value_to_exist("a", "XYZ").\
-            expect_column_values_to_not_have_one_unique_count("a").\
+            expect_column_to_exist("column_A").\
+            expect_column_values_to_be_of_type("column_A", "StringType").\
+            expect_column_value_to_exist("column_A", "XYZ").\
+            expect_column_values_to_not_have_one_unique_count("column_A").\
             result()
 
 # source_data = "<set_dataframe>"
