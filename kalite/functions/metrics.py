@@ -216,6 +216,10 @@ class GeMetrics:
         """
         Parent of _get_rate, iterates on each column value of the given column
         and calculates the rate.
+
+        Does not work with column type date and timestamp.
+        Details: README.md#Limitations
+
         :param column: Representing a column name on which we want to perform
         :param total_count: Total Row count used in calculation
         :return: Returns a self from the decorator
@@ -244,6 +248,10 @@ class GeMetrics:
         """
         Parent of get_column_value_count, iterates on each column value of the
         given column and calculate the count.
+
+        Does not work with column type date and timestamp.
+        Details: README.md#Limitations
+
         :param column: Representing a column name on which we want to perform
         :return: Returns a self from the decorator
         """

@@ -31,6 +31,7 @@ Few ways:
 
 ### Metrics
 How to run metrics: </br>
+Read: [Limitations](https://github.com/MJFND/data-kalite#limitations)
 To run default metrics;
 ```python
 from kalite.application.default_metrics import DefaultMetrics
@@ -88,6 +89,7 @@ Metrics sample result:
 
 ### Validations
 How to run validations: </br>
+Read: [Limitations](https://github.com/MJFND/data-kalite#limitations)
 To run validations, `validations` function must be implemented.
 ```python
 from typing import List
@@ -175,7 +177,7 @@ E.g.
 Metric `get_column_values_count`, See metrics [here]https://github.com/MJFND/data-kalite/blob/main/kalite/functions/metrics.py#L117-L253)
 - `column_value` is casted as `STRING` during `DataFrame` generation, casting can fail if input types are `DATE` or `TIMESTAMP`.
 
-Since Spark column can be of one type, workaround is to explicitly convert these into `STRING` before running metrics.
+Since Spark column can be of one type, workaround is to explicitly convert these into `STRING` before running metrics or avoid running these checks for those types of columns.
 
 
 ## Contributing
