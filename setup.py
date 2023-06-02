@@ -10,8 +10,8 @@ with open("README.md", "r") as f:
 
 setup(
     name="data-kalite",
-    version="1.0.1",
-    packages=find_packages(),
+    version="1.0.2",
+    packages=find_packages(exclude=["tests"]),
     install_requires=install_requires,
     python_requires=">=3.7.0",
     author="Junaid Effendi",
