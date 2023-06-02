@@ -14,8 +14,8 @@ class Metrics(Base):
     def __init__(
         self,
         source_data: DataFrame,
+        metadata: Dict,
         config: Any = None,
-        metadata: Dict = None,
         # TODO needs to find a better way to automatically calculate threshold
         unique_count_threshold: int = 25,
     ):
