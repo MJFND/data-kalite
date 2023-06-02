@@ -172,8 +172,8 @@ Validator.validate(validation_data)
 ```
 
 ## Limitations
-It does not support `DATE` or `TIMESTAMP` datatype input columns for certain metrics that requires `column_value` to be set. </br>
-E.g. Metric `get_column_values_count`, See metrics [here]https://github.com/MJFND/data-kalite/blob/main/kalite/functions/metrics.py#L117-L253)
+Data-Kalite does not support `DATE` or `TIMESTAMP` datatype input columns for certain metrics that requires `column_value` to be set. </br>
+E.g. Metric `get_column_values_count`, See metrics [here](https://github.com/MJFND/data-kalite/blob/main/kalite/functions/metrics.py#L117-L253)
 - `column_value` is casted as `STRING` during `DataFrame` generation, casting can fail if input types are `DATE` or `TIMESTAMP`.
 
 Since Spark column can be of one type, workaround is to explicitly convert these into `STRING` before running metrics or avoid running these checks for those types of columns.
