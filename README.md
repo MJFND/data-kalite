@@ -22,13 +22,13 @@ On Top of GE:
 - Ability to use lower level api for metrics and validations
 
 ## Usage
-Requires: `Python3.9` <br/>
+Requires: `3.7.0 < Python < 3.10.0` <br/>
 Few ways:
 - Download from Pypi `pip install data-kalite`
 - Clone and integrate in your codebase
 - Clone and build your python package:
-    - `pip install .` for `.egg`
-    - `python setup.py bdist_wheel`, for `whl`
+    - `pip install .` for local install
+    - `python setup.py bdist_wheel` for distribution
 
 ### Metrics
 How to run metrics: </br>
