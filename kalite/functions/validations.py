@@ -16,9 +16,7 @@ from kalite.utilities.logger import logger
 
 
 class Validations(Base):
-    def __init__(
-        self, source_data: DataFrame, config: Any = None, metadata: Dict = None
-    ):
+    def __init__(self, source_data: DataFrame, metadata: Dict, config: Any = None):
         """
         Initialize
         :param source_data: A Dataframe holding the actual source data

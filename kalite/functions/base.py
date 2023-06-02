@@ -24,8 +24,8 @@ class Base(ABC):
     def __init__(
         self,
         source_data: DataFrame,
-        config,
         metadata: Dict,
+        config: Dict,
         unique_count_threshold: int = 25,
     ):
         """

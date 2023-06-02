@@ -6,6 +6,7 @@ from pyspark.sql.types import (
     FloatType,
     IntegerType,
     NumericType,
+    StringType,
 )
 
 from kalite.functions.metrics import GeMetrics, Metrics, MetricsData
@@ -37,8 +38,12 @@ class DefaultMetrics(Metrics):
                 start_index = ge_metrics.find_last_calculated_metric_index()
                 ge_metrics = ge_metrics.get_column_unique_count(column.name)
                 unique_count = ge_metrics.result()[start_index].results
-                if unique_count <= self.unique_count_threshold:
-                    ge_metrics.get_column_values_count(column.name).get_rates(
-                        column.name, int(row_count)
-                    )
+                if isinstance(column.dataType, StringType):
+                    # Following checks cannot be run on Date and TimeStamp Columns
+                    # Checks set col `column_value` which requires to be STRING
+                    # Check: README.md#Limitations
+                    if unique_count <= self.unique_count_threshold:
+                        ge_metrics.get_column_values_count(column.name).get_rates(
+                            column.name, int(row_count)
+                        )
         return ge_metrics.result()

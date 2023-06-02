@@ -16,6 +16,7 @@ On Top of GE:
     - Failing the pipeline when one of the validation has failed
     - Logs validation through logger
 - Support to add metadata column for tracking purposes (dag_id etc)
+- Support to pass optional pipeline args (batch_date etc)
 - Deriving validations through configurations (YAML configs or Dict)
 - Easy to run default metrics
 - Ability to use lower level api for metrics and validations
@@ -30,18 +31,27 @@ Few ways:
 
 ### Metrics
 How to run metrics: </br>
+Read: [Limitations](https://github.com/MJFND/data-kalite#limitations)</br>
 To run default metrics;
 ```python
 from kalite.application.default_metrics import DefaultMetrics
 
 source_data = "<set_dataframe>"
-metadata = "<set_optional_dict>"
-# run() returns a DataFrame  
-DefaultMetrics(source_data=source_data, metadata=metadata).run()
+metadata = {
+    "dag_id": "<set>",
+    "dag_task_id": "<set>",
+    "dag_run_id": "<set>",
+    "pipeline_args": {"<set>": "<set>"}, # OPTIONAL
+}
+# run() returns a DataFrame
+# set unique_count_threshold depending on data size: Details [here](https://github.com/MJFND/data-kalite/blob/main/kalite/functions/metrics.py#L27-L29) 
+metrics = DefaultMetrics(source_data=source_data, metadata=metadata, unique_count_threshold=5).run()
+metrics.show(10,False)
 ```
 
 Implementing Metrics:
 ```python
+from typing import List
 from kalite.data_classes.metrics_data import MetricsData
 from kalite.functions.metrics import GeMetrics, Metrics
 
@@ -53,9 +63,16 @@ class TempM(Metrics):
             result()
     
 source_data = "<set_dataframe>"
-metadata = "<set_optional_dict>"
+metadata = {
+    "dag_id": "<set>",
+    "dag_task_id": "<set>",
+    "dag_run_id": "<set>",
+    "pipeline_args": {"<set>": "<set>"}, # OPTIONAL
+}
 # run() returns a DataFrame
-metrics = TempM(source_data=data, metadata=metadata).run()
+# set unique_count_threshold depending on data size: Details [here](https://github.com/MJFND/data-kalite/blob/main/kalite/functions/metrics.py#L27-L29) 
+metrics = TempM(source_data=source_data, metadata=metadata, unique_count_threshold=2).run()
+metrics.show(10,False)
 ```
 Refer to unit test cases on usage.
 
@@ -72,24 +89,32 @@ Metrics sample result:
 
 ### Validations
 How to run validations: </br>
+Read: [Limitations](https://github.com/MJFND/data-kalite#limitations)</br>
 To run validations, `validations` function must be implemented.
 ```python
+from typing import List
 from kalite.data_classes.validations_data import ValidationsData
 from kalite.functions.validations import GeValidations, Validations
 
 class TempV(Validations):
     def validations(self) -> List[ValidationsData]:
         return GeValidations(self.source_data).\
-            expect_column_to_exist("decision").\
-            expect_column_values_to_be_of_type(column, "StringType").\
-            expect_column_value_to_exist("decision", "XYZ").\
-            expect_column_values_to_not_have_one_unique_count("decision").\
+            expect_column_to_exist("a").\
+            expect_column_values_to_be_of_type("a", "StringType").\
+            expect_column_value_to_exist("a", "XYZ").\
+            expect_column_values_to_not_have_one_unique_count("a").\
             result()
 
-source_data = "<set_dataframe>"
-metadata = "<set_optional_dict>"
+# source_data = "<set_dataframe>"
+metadata = {
+    "dag_id": "<set>",
+    "dag_task_id": "<set>",
+    "dag_run_id": "<set>",
+    "pipeline_args": {"<set>": "<set>"}, # OPTIONAL
+}
 # run() returns a DataFrame
-validations = TempV(source_data=data, metadata=metadata).run()
+validations = TempV(source_data=source_data, metadata=metadata).run()
+validations.show(10,False)
 ```
 Refer to unit test cases on usage.
 
@@ -116,10 +141,17 @@ Function require config to be dictionary, it can be sourced from YAML or JSON as
 from kalite.application.config_driven_validations import ConfigDrivenValidations
 
 source_data = "<set_dataframe>"
-metadata = "<set_optional_dict>"
-config = "<set_dict>"
+metadata = {
+    "dag_id": "<set>",
+    "dag_task_id": "<set>",
+    "dag_run_id": "<set>",
+    "pipeline_args": {"<set>": "<set>"}, # OPTIONAL
+}
+config = "<set_dict>" # Details: https://github.com/MJFND/data-kalite/blob/main/kalite/application/config_driven_validations.py#L20-L28
+
 # run() returns a DataFrame
-ConfigDrivenValidations(source_data=data, metadata=metadata, config=config).run()
+validations = ConfigDrivenValidations(source_data=source_data, metadata=metadata, config=config).run()
+validations.show(10,False)
 ```
 Refer to unit test cases on usage.
 
@@ -135,9 +167,17 @@ After generating the DataFrame of validations, `Validator` can be used to throw 
 ```python
 from kalite.functions.validator import Validator
 
-validation_data = "<dataset>" # dataframe that was generated through Validations
+validation_data = "<set_dataframe>" # dataframe that was generated through Validations
 Validator.validate(validation_data)
 ```
+
+## Limitations
+It does not support `DATE` or `TIMESTAMP` datatype input columns for certain metrics that requires `column_value` to be set. </br>
+E.g. Metric `get_column_values_count`, See metrics [here]https://github.com/MJFND/data-kalite/blob/main/kalite/functions/metrics.py#L117-L253)
+- `column_value` is casted as `STRING` during `DataFrame` generation, casting can fail if input types are `DATE` or `TIMESTAMP`.
+
+Since Spark column can be of one type, workaround is to explicitly convert these into `STRING` before running metrics or avoid running these checks for those types of columns.
+
 
 ## Contributing
 #### Setup Local Environment
