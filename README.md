@@ -22,6 +22,7 @@ On Top of GE:
 - Ability to use lower level api for metrics and validations
 
 ## Usage
+Requires: `Python3.9` <br/>
 Few ways:
 - Download from Pypi `pip install data-kalite`
 - Clone and integrate in your codebase
