@@ -10,10 +10,10 @@ with open("README.md", "r") as f:
 
 setup(
     name="data-kalite",
-    version="1.0.2",
-    packages=find_packages(exclude=["tests"]),
+    version="1.0.3",
+    packages=find_packages(exclude=["tests", "tests.*"]),
     install_requires=install_requires,
-    python_requires=">=3.7.0",
+    python_requires=">3.7.0,<3.11.0",
     author="Junaid Effendi",
     description="Data Quality for PySpark Pipelines",
     long_description=long_description,
