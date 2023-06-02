@@ -31,7 +31,7 @@ Few ways:
 
 ### Metrics
 How to run metrics: </br>
-Read: [Limitations](https://github.com/MJFND/data-kalite#limitations)
+Read: [Limitations](https://github.com/MJFND/data-kalite#limitations)</br>
 To run default metrics;
 ```python
 from kalite.application.default_metrics import DefaultMetrics
@@ -89,7 +89,7 @@ Metrics sample result:
 
 ### Validations
 How to run validations: </br>
-Read: [Limitations](https://github.com/MJFND/data-kalite#limitations)
+Read: [Limitations](https://github.com/MJFND/data-kalite#limitations)</br>
 To run validations, `validations` function must be implemented.
 ```python
 from typing import List
@@ -99,13 +99,13 @@ from kalite.functions.validations import GeValidations, Validations
 class TempV(Validations):
     def validations(self) -> List[ValidationsData]:
         return GeValidations(self.source_data).\
-            expect_column_to_exist("decision").\
-            expect_column_values_to_be_of_type("decision", "StringType").\
-            expect_column_value_to_exist("decision", "XYZ").\
-            expect_column_values_to_not_have_one_unique_count("decision").\
+            expect_column_to_exist("a").\
+            expect_column_values_to_be_of_type("a", "StringType").\
+            expect_column_value_to_exist("a", "XYZ").\
+            expect_column_values_to_not_have_one_unique_count("a").\
             result()
 
-source_data = "<set_dataframe>"
+# source_data = "<set_dataframe>"
 metadata = {
     "dag_id": "<set>",
     "dag_task_id": "<set>",
@@ -172,9 +172,8 @@ Validator.validate(validation_data)
 ```
 
 ## Limitations
-It does not support `DATE` or `TIMESTAMP` datatype input columns for certain metrics that requires `column_value` to be set.
-E.g.
-Metric `get_column_values_count`, See metrics [here]https://github.com/MJFND/data-kalite/blob/main/kalite/functions/metrics.py#L117-L253)
+It does not support `DATE` or `TIMESTAMP` datatype input columns for certain metrics that requires `column_value` to be set. </br>
+E.g. Metric `get_column_values_count`, See metrics [here]https://github.com/MJFND/data-kalite/blob/main/kalite/functions/metrics.py#L117-L253)
 - `column_value` is casted as `STRING` during `DataFrame` generation, casting can fail if input types are `DATE` or `TIMESTAMP`.
 
 Since Spark column can be of one type, workaround is to explicitly convert these into `STRING` before running metrics or avoid running these checks for those types of columns.
